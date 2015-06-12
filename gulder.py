@@ -12,12 +12,8 @@ with open('.input', 'r') as f:
  #T_list = list(T)
 
  def solve(chests, keys):
-    keys = T.copy(keys)
-    keys_across_universe = keys + sum(chest.inside for chest in chests)
-    required = Counter(chest.lock for chest in chests)
-    required = numpy.array([required[key] for key in range(max_key+1)])
-    if any(required > keys_across_universe):
-        return False
+    keys = 
+
 
 
 
