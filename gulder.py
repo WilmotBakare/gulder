@@ -1,5 +1,5 @@
 import fileinput, sys
-#import .input
+#import numpy
 from collections import Counter
 
 with open('.input', 'r') as f:
@@ -8,8 +8,17 @@ with open('.input', 'r') as f:
     pass
 
  max_key = 200
- T = list(f.readline())
+ T = int(f.readline())
  #T_list = list(T)
+
+ def solve(chests, keys):
+    keys = T.copy(keys)
+    keys_across_universe = keys + sum(chest.inside for chest in chests)
+    required = Counter(chest.lock for chest in chests)
+    required = numpy.array([required[key] for key in range(max_key+1)])
+    if any(required > keys_across_universe):
+        return False
+
 
 
  for case in range(1,T+1):
@@ -18,7 +27,7 @@ with open('.input', 'r') as f:
     assert len(initial_keys) == K
     initial_keys = Counter(initial_keys)
 
-    initial_keys = T_list([initial_keys[key] for key in range(max_key+1)])
+    initial_keys = f([initial_keys[key] for key in range(max_key+1)])
 
     chests = list()
 
@@ -29,7 +38,7 @@ with open('.input', 'r') as f:
         inside = numbers[2:]
         assert len(inside) == Ki
         inside = Counter(inside)
-        inside = list(f)([inside[key] for key in range(max_key+1)])
+        inside = f([inside[key] for key in range(max_key+1)])
         assert inside[0] == 0
 
         chest = Chest()
