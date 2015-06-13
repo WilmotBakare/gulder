@@ -17,5 +17,6 @@ def main():
 
             output.write(str(time.clock() - start))
 
+
             
 
